@@ -1,0 +1,8 @@
+{
+    "name": "gc-plud",
+    "description": "A plud service for gc db",
+    "repository": "https://github.com/thenakula/gcbig",
+    "logo": "https://node-js-sample.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"]
+  }
+  
