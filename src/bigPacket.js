@@ -73,13 +73,13 @@ async function makeAcc(userName, serverAddr, multiplier) {
         return true
         // console.log(res.data)
     } else {
-        console.log('err')
-        myIo.emit('[Big] chat message', 'err line 74')
+        console.log(res.data)
+        myIo.emit('chat message', res.data)
         return false
     }
   }).catch(err => {
         console.log(err.message)
-        myIo.emit('[Big] chat message', err.message)
+        myIo.emit('chat message', err.message)
         return false
   })
 }
