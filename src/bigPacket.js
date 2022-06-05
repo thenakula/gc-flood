@@ -59,7 +59,7 @@ async function makeAcc(userName, serverAddr, multiplier) {
             const element = stat[i];
             if (element.serverName == serverAddr) {
                 element.bigSent = element.bigSent + 1
-                element.bigSize = element.bigSize + (1 * multiplier / 1024)
+                element.bigSize = element.bigSize + (userName.length / (1024 * 1024))
             }
         }
 
@@ -168,7 +168,7 @@ function addServerToStat(serverAddr) {
 function printServerStat() {
     stat.forEach((srv) => {
         let now = new Date()
-        let formatedString = `[Big] Srv: ${srv.serverName} | Small: ${srv.smallSent} | Big: ${srv.bigSize.toFixed(3)}GB | At: | ${now.getHours()}:${now.getMinutes()}`
+        let formatedString = `[Big] Srv: ${srv.serverName} | Small: ${srv.smallSent} | Big: ${srv.bigSize.toFixed(5)}MB | At: | ${now.getHours()}:${now.getMinutes()}`
         console.log(formatedString)
         myIo.emit('chat message', formatedString)
     })
