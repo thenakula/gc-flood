@@ -5,7 +5,7 @@ const fs = require('fs')
 const { Console } = require('console')
 
 
-const http = rateLimit(axios.create(), { maxRequests: 4, perMilliseconds: 1000, maxRPS: 4 })
+const http = rateLimit(axios.create(), { maxRequests: 10, perMilliseconds: 1000, maxRPS: 10 })
 var count = 0
 
 let myIo
