@@ -3,9 +3,10 @@ const rateLimit = require('axios-rate-limit')
 const lineReader = require('line-reader')
 const fs = require('fs')
 const { Console } = require('console')
+const util = require('../util/util')
 
 
-const http = rateLimit(axios.create(), { maxRequests: 4, perMilliseconds: 1000, maxRPS: 4 })
+const http = rateLimit(axios.create(), { maxRequests: 20, perMilliseconds: 1000, maxRPS: 20 })
 var count = 0
 
 let myIo
@@ -103,6 +104,11 @@ async function sendBigPacket(serverAddr, randString, multiplier, amount, io) {
     for (let i=0; i<amount;) {
         // 10 Mb each
         let userName = randString +i.toString() + randString + tenMb + (Math.floor(Date.now() / 1)).toString()
+
+        if (multiplier == 0) {
+            userName = util.makeid(36) + Date.now().toString()
+        }
+
         var isSuccess = await makeAcc(userName, serverAddr, multiplier)
         if (isSuccess) {
             i++
